@@ -1,0 +1,7 @@
+{
+  "account_id": "SET_EXISTING_CLOUDFLARE_ACCOUNT_ID",
+  "worker_name": "mysuperagent-test",
+  "workflow_name": "mysuperagent-round-test",
+  "worker_url": null,
+  "source_bindings": []
+}

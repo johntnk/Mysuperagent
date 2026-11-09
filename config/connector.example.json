@@ -1,0 +1,7 @@
+{
+  "cloud_base_url": "https://YOUR-TEST-WORKER.workers.dev",
+  "connector_id": "UNCONFIGURED",
+  "project_id": "demo-project",
+  "state_file": "./artifacts/connector-state.json",
+  "sources": []
+}

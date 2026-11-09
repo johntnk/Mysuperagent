@@ -1,0 +1,237 @@
+{
+  "schemaVersion": 1,
+  "routingVersion": "routing-v1-example",
+  "projectKey": "demo-project",
+  "fallback": {
+    "state": "needs_clarification",
+    "triagePersonKey": "coordinator",
+    "allowNameBasedIdResolution": false
+  },
+  "unknownOwners": {
+    "gpuGlobalOwnerKey": null,
+    "ciCdGlobalOwnerKey": null,
+    "productionReleaseApproverKey": null
+  },
+  "members": [
+    {
+      "personKey": "coordinator",
+      "displayName": "协调人",
+      "feishuOpenId": null,
+      "enabled": false,
+      "domains": ["project_coordination"],
+      "defaultRole": "coordinator"
+    },
+    {
+      "personKey": "qa_lead",
+      "displayName": "测试负责人",
+      "feishuOpenId": null,
+      "enabled": false,
+      "domains": ["qa_validation"],
+      "defaultRole": "qa_owner"
+    },
+    {
+      "personKey": "retrieval_owner",
+      "displayName": "检索负责人",
+      "feishuOpenId": null,
+      "enabled": false,
+      "domains": ["action_retrieval", "asset_annotation", "asset_ingestion"],
+      "defaultRole": "domain_owner"
+    },
+    {
+      "personKey": "model_owner",
+      "displayName": "模型负责人",
+      "feishuOpenId": null,
+      "enabled": false,
+      "domains": ["intent_model", "model_experiment", "model_inference"],
+      "defaultRole": "domain_owner"
+    },
+    {
+      "personKey": "agent_owner",
+      "displayName": "对话负责人",
+      "feishuOpenId": null,
+      "enabled": false,
+      "domains": ["agent_response", "agent_integration", "ssml_orchestration"],
+      "defaultRole": "domain_owner"
+    },
+    {
+      "personKey": "motion_owner",
+      "displayName": "动作处理负责人",
+      "feishuOpenId": null,
+      "enabled": false,
+      "domains": ["aigc", "motion_fusion", "motion_transcription", "asset_ingestion"],
+      "defaultRole": "domain_owner"
+    },
+    {
+      "personKey": "runtime_owner",
+      "displayName": "运行链路负责人",
+      "feishuOpenId": null,
+      "enabled": false,
+      "domains": ["realtime_integration", "runtime_logs", "scene_state"],
+      "defaultRole": "domain_owner"
+    },
+    {
+      "personKey": "content_owner",
+      "displayName": "素材负责人",
+      "feishuOpenId": null,
+      "enabled": false,
+      "domains": ["motion_content", "motion_capture", "asset_quality"],
+      "defaultRole": "domain_owner"
+    },
+    {
+      "personKey": "tech_lead",
+      "displayName": "技术负责人",
+      "feishuOpenId": null,
+      "enabled": false,
+      "domains": ["technical_decision", "response_policy"],
+      "defaultRole": "technical_reviewer"
+    },
+    {
+      "personKey": "design_lead",
+      "displayName": "交互设计负责人",
+      "feishuOpenId": null,
+      "enabled": false,
+      "domains": ["interaction_design", "motion_content"],
+      "defaultRole": "domain_reviewer"
+    },
+    {
+      "personKey": "service_owner",
+      "displayName": "服务协议负责人",
+      "feishuOpenId": null,
+      "enabled": false,
+      "domains": ["service_protocol", "service_integration"],
+      "defaultRole": "collaborator"
+    },
+    {
+      "personKey": "client_owner",
+      "displayName": "客户端负责人",
+      "feishuOpenId": null,
+      "enabled": false,
+      "domains": ["client_runtime"],
+      "defaultRole": "domain_owner"
+    },
+    {
+      "personKey": "tts_contact",
+      "displayName": "语音专项联系人",
+      "feishuOpenId": null,
+      "enabled": false,
+      "domains": ["tts_quality"],
+      "defaultRole": "specialist_contact"
+    },
+    {
+      "personKey": "capture_owner",
+      "displayName": "拍摄协作",
+      "feishuOpenId": null,
+      "enabled": false,
+      "domains": ["motion_capture", "asset_quality"],
+      "defaultRole": "collaborator"
+    },
+    {
+      "personKey": "scene_artist",
+      "displayName": "场景美术",
+      "feishuOpenId": null,
+      "enabled": false,
+      "domains": ["art_scene"],
+      "defaultRole": "collaborator"
+    },
+    {
+      "personKey": "motion_artist",
+      "displayName": "动作美术",
+      "feishuOpenId": null,
+      "enabled": false,
+      "domains": ["motion_content", "art_scene"],
+      "defaultRole": "collaborator"
+    }
+  ],
+  "routes": [
+    {
+      "routeKey": "retrieval_and_annotation",
+      "domains": ["action_retrieval", "asset_annotation"],
+      "primaryOwnerKey": "retrieval_owner",
+      "collaboratorKeys": ["content_owner"],
+      "qaOwnerKey": "qa_lead",
+      "decisionOwnerKey": null,
+      "contactKeys": []
+    },
+    {
+      "routeKey": "asset_ingestion",
+      "domains": ["asset_ingestion"],
+      "primaryOwnerKey": "retrieval_owner",
+      "collaboratorKeys": ["motion_owner"],
+      "qaOwnerKey": "qa_lead",
+      "decisionOwnerKey": null,
+      "contactKeys": []
+    },
+    {
+      "routeKey": "asset_content_and_quality",
+      "domains": ["motion_content", "motion_capture", "asset_quality"],
+      "primaryOwnerKey": "content_owner",
+      "collaboratorKeys": ["retrieval_owner", "motion_owner", "capture_owner"],
+      "qaOwnerKey": "qa_lead",
+      "decisionOwnerKey": "design_lead",
+      "contactKeys": []
+    },
+    {
+      "routeKey": "model_work",
+      "domains": ["intent_model", "model_experiment", "model_inference"],
+      "primaryOwnerKey": "model_owner",
+      "collaboratorKeys": ["agent_owner", "retrieval_owner"],
+      "qaOwnerKey": "qa_lead",
+      "decisionOwnerKey": "tech_lead",
+      "contactKeys": []
+    },
+    {
+      "routeKey": "agent_behavior",
+      "domains": ["agent_response", "agent_integration", "ssml_orchestration"],
+      "primaryOwnerKey": "agent_owner",
+      "collaboratorKeys": ["model_owner", "runtime_owner"],
+      "qaOwnerKey": "qa_lead",
+      "decisionOwnerKey": "tech_lead",
+      "contactKeys": []
+    },
+    {
+      "routeKey": "aigc_and_fusion",
+      "domains": ["aigc", "motion_fusion", "motion_transcription"],
+      "primaryOwnerKey": "motion_owner",
+      "collaboratorKeys": ["service_owner", "runtime_owner"],
+      "qaOwnerKey": "qa_lead",
+      "decisionOwnerKey": null,
+      "contactKeys": []
+    },
+    {
+      "routeKey": "realtime_and_logs",
+      "domains": ["realtime_integration", "runtime_logs", "scene_state"],
+      "primaryOwnerKey": "runtime_owner",
+      "collaboratorKeys": ["motion_owner", "client_owner"],
+      "qaOwnerKey": "qa_lead",
+      "decisionOwnerKey": null,
+      "contactKeys": []
+    },
+    {
+      "routeKey": "client",
+      "domains": ["client_runtime"],
+      "primaryOwnerKey": "client_owner",
+      "collaboratorKeys": ["runtime_owner", "motion_owner"],
+      "qaOwnerKey": "qa_lead",
+      "decisionOwnerKey": null,
+      "contactKeys": []
+    },
+    {
+      "routeKey": "tts_specialist",
+      "domains": ["tts_quality"],
+      "primaryOwnerKey": null,
+      "collaboratorKeys": ["agent_owner"],
+      "qaOwnerKey": "qa_lead",
+      "decisionOwnerKey": null,
+      "contactKeys": ["tts_contact"]
+    },
+    {
+      "routeKey": "unknown_resource_owner",
+      "domains": ["gpu_resource", "ci_cd"],
+      "primaryOwnerKey": null,
+      "collaboratorKeys": [],
+      "qaOwnerKey": null,
+      "decisionOwnerKey": null,
+      "contactKeys": []
+    }
+  ]
+}

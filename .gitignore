@@ -1,0 +1,20 @@
+# dependencies and build output
+node_modules/
+dist/
+.wrangler/
+coverage/
+*.log
+.DS_Store
+
+# local secrets and real identifiers - never commit
+.dev.vars
+.dev.vars.*
+!.dev.vars.example
+.env
+.env.*
+!.env.example
+config/*.local.json
+
+# local runs and private data (chat exports, replay artifacts)
+artifacts/
+data/

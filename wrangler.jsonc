@@ -1,0 +1,16 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "mysuperagent-local",
+  "main": "src/worker.ts",
+  "compatibility_date": "2026-11-06",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": false,
+  "send_metrics": false,
+  "vars": { "MODE": "mock", "ENVIRONMENT": "local" },
+  "durable_objects": { "bindings": [{ "name": "PROJECT", "class_name": "ProjectAgent" }] },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["ProjectAgent"] }],
+  "workflows": [
+    { "name": "mysuperagent-issue-round-local", "binding": "ISSUE_ROUND", "class_name": "IssueRound" },
+  ],
+  "triggers": { "crons": ["*/5 * * * *"] },
+}

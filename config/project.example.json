@@ -1,0 +1,166 @@
+{
+  "schemaVersion": 1,
+  "configVersion": "v1-example",
+  "projectKey": "demo-project",
+  "displayName": "示例项目协调",
+  "timezone": "Asia/Shanghai",
+  "mode": "mock",
+  "environment": "local",
+  "routingFile": "config/routing.example.json",
+  "allowlists": {
+    "feishuChatIds": [],
+    "feishuProjectSpaceIds": [],
+    "bitableAppTokens": [],
+    "feishuOpenIds": [],
+    "evidenceSourceIds": []
+  },
+  "capabilities": {
+    "modelInference": false,
+    "readFeishuEvents": false,
+    "readWorkItems": false,
+    "readEvidence": false,
+    "writeWorkItems": false,
+    "sendMessages": false,
+    "readMessageImages": false
+  },
+  "model": {
+    "provider": null,
+    "baseUrlEnv": "MODEL_BASE_URL",
+    "modelIdEnv": "MODEL_ID",
+    "apiKeyEnv": "MODEL_API_KEY"
+  },
+  "budgets": {
+    "modelCallsPerRun": 3,
+    "toolReadsPerRun": 12,
+    "runTimeoutSeconds": 180,
+    "maxConcurrentRuns": 2,
+    "maxInputCharacters": 60000,
+    "maxOutputTokens": 6000,
+    "maxImagesPerRun": 3,
+    "maxImageBytes": 4000000
+  },
+  "feishu": {
+    "appId": null,
+    "botOpenId": null,
+    "tenantKey": null,
+    "eventTransport": "webhook",
+    "callbackPath": "/integrations/feishu/events",
+    "commandPrefix": "/agent",
+    "receiveScope": "mentions_only",
+    "subscribedEvents": ["im.message.receive_v1"],
+    "subscribedCallbacks": ["card.action.trigger"],
+    "requiredReceiveScopes": ["im:message.group_at_msg:readonly"],
+    "requiredSendScopes": ["im:message:send_as_bot"],
+    "grantedScopes": []
+  },
+  "workItemBackend": {
+    "type": "agent_ledger",
+    "mockStorage": "persistent",
+    "feishuProject": {
+      "apiBaseUrl": null,
+      "spaceId": null,
+      "workItemTypeId": null,
+      "authMode": null,
+      "credentialEnv": "FEISHU_PROJECT_AUTH_TOKEN",
+      "actorKeyEnv": "FEISHU_PROJECT_ACTOR_KEY",
+      "grantedPermissions": [],
+      "memberIdMappings": {}
+    },
+    "bitable": {
+      "appToken": null,
+      "tableId": null
+    },
+    "fieldMappings": {
+      "task_id": null,
+      "issue_id": null,
+      "project_id": null,
+      "kind": null,
+      "title": null,
+      "deliverable": null,
+      "state": null,
+      "primary_owner_key": null,
+      "collaborator_keys": null,
+      "qa_owner_key": null,
+      "dependencies": null,
+      "acceptance_spec": null,
+      "schedule": null,
+      "revision": null
+    },
+    "stateMappings": {
+      "needs_clarification": null,
+      "pending_acceptance": null,
+      "in_progress": null,
+      "blocked": null,
+      "ready_for_qa": null,
+      "verified": null,
+      "deferred": null,
+      "cancelled": null
+    },
+    "assignmentStatusField": null,
+    "assignmentStatusMappings": {
+      "proposed": null,
+      "acknowledged": null,
+      "accepted": null,
+      "ended": null
+    },
+    "qaMappings": {
+      "resultField": null,
+      "coverageField": null,
+      "releaseBundleRefField": null,
+      "evidenceRefsField": null
+    }
+  },
+  "evidenceConnector": {
+    "enabled": false,
+    "connectorId": null,
+    "transport": "outbound_poll",
+    "cloudBaseUrlEnv": "CONNECTOR_CLOUD_BASE_URL",
+    "credentialEnv": "CONNECTOR_AUTH_TOKEN",
+    "pollIntervalSeconds": 60,
+    "sources": {
+      "feedback": {
+        "sourceId": null,
+        "baseUrlEnv": "FEEDBACK_API_BASE_URL",
+        "credentialEnv": "FEEDBACK_API_TOKEN"
+      },
+      "runtimeLogs": {
+        "sourceId": null,
+        "baseUrlEnv": "LOGS_API_BASE_URL",
+        "credentialEnv": "LOGS_API_TOKEN"
+      },
+      "animationLibrary": {
+        "sourceId": null,
+        "baseUrlEnv": "ANIMATION_LIBRARY_BASE_URL",
+        "credentialEnv": "ANIMATION_LIBRARY_API_TOKEN"
+      },
+      "trainingStatus": {
+        "sourceId": null,
+        "baseUrlEnv": "TRAINING_STATUS_BASE_URL",
+        "credentialEnv": "TRAINING_STATUS_API_TOKEN"
+      },
+      "deploymentStatus": {
+        "sourceId": null,
+        "baseUrlEnv": "DEPLOYMENT_STATUS_BASE_URL",
+        "credentialEnv": "DEPLOYMENT_STATUS_API_TOKEN"
+      }
+    }
+  },
+  "notifications": {
+    "enabled": false,
+    "policyStatus": "suggested",
+    "workdays": [1, 2, 3, 4, 5],
+    "workHours": {
+      "start": "10:00",
+      "end": "19:00"
+    },
+    "cooldownMinutes": 120,
+    "acceptanceFollowUpBusinessHours": 4,
+    "blockedFollowUpBusinessHours": 8,
+    "qaFollowUpBusinessHours": 8,
+    "dailyDigestTime": "18:00",
+    "maxMentionsPerTaskPerDay": 2,
+    "replyInSourceThread": true,
+    "allowDirectMessages": false,
+    "escalationPersonKey": null
+  }
+}

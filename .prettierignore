@@ -1,0 +1,9 @@
+node_modules
+dist
+.wrangler
+artifacts
+data
+pnpm-lock.yaml
+demo/index.html
+demo/replay.json
+demo/transcript.md

@@ -1,0 +1,13 @@
+# Runtime secrets only. Copy to .dev.vars locally; never commit actual values.
+ADMIN_AUTH_TOKEN=
+FEISHU_APP_SECRET=
+FEISHU_VERIFICATION_TOKEN=
+FEISHU_ENCRYPT_KEY=
+FEISHU_PROJECT_AUTH_TOKEN=
+FEISHU_PROJECT_ACTOR_KEY=
+CONNECTOR_AUTH_TOKEN=
+MODEL_BASE_URL=https://api.openai.com/v1
+MODEL_ID=gpt-6-astra
+MODEL_API_KEY=
+# MODE and ENVIRONMENT must agree with the project configuration.
+# Deployment credentials are not Worker runtime variables.
